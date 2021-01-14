@@ -21,42 +21,55 @@ class MelonType(object):
     def add_pairing(self, pairing):
         """Add a food pairing to the instance's pairings list."""
 
-        self.pairings = self.pairings.append(self.pairings)
+        self.pairings.append(pairing)
 
     def update_code(self, new_code):
         """Replace the reporting code with the new_code."""
 
         self.code = new_code
 
+all_melon_types = []
+
 def make_melon_types():
     """Returns a list of current melon types."""
 
-    all_melon_types = []
+    # Instantiate 4 melon types
 
-    # self, code, first_harvest, color, is_seedless, is_bestseller, name
-    
     musk = MelonType('musk', 1998, 'green', True, True, 'Muskmelon')
     all_melon_types.append(musk)
     musk.add_pairing('Mint')
 
     cas = MelonType('cas', 2003, 'orange', False, False, 'Casaba')
     all_melon_types.append(cas)
-    musk.add_pairing('Strawberries and Mint')
+    cas.add_pairing('Strawberries')
+    
+    cas.add_pairing('Mint')
 
     cren = MelonType('cren', 1996, 'green', False, False, 'Crenshaw')
     all_melon_types.append(cren)
-    musk.add_pairing('Proscuitto')
+    cren.add_pairing('Proscuitto')
 
-    yw = MelonType('yw', 2013, 'yellow', False, True, 'Yellow Watermellon')
+    yw = MelonType('yw', 2013, 'yellow', False, True, 'Yellow Watermelon')
     all_melon_types.append(yw)
-    musk.add_pairing('Ice Cream')
+    yw.add_pairing('Ice Cream')
 
     return all_melon_types
+
 
 def print_pairing_info(melon_types):
     """Prints information about each melon type's pairings."""
 
-    # Fill in the rest
+    for melon in melon_types:
+        print(f'{melon.name} pairs with')
+        for pair in melon.pairings:
+            print(f'- {pair}')
+
+
+make_melon_types()
+
+print_pairing_info(all_melon_types)
+
+
 
 def make_melon_type_lookup(melon_types):
     """Takes a list of MelonTypes and returns a dictionary of melon type by code."""
